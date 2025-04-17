@@ -1,0 +1,263 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>${packageName}</groupId>
+		<artifactId>${projectName}</artifactId>
+		<version>0.0.1</version>
+	</parent>
+	<artifactId>${projectName}-backend</artifactId>
+	<packaging>jar</packaging>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<!-- Backend configuration -->
+		<${packageName}.${projectName}.backend.superTenantId>0</${packageName}.${projectName}.backend.superTenantId>
+		<${packageName}.${projectName}.backend.version>${project.version}</${packageName}.${projectName}.backend.version>
+
+		<${packageName}.${projectName}.backend.events.clusterId>1</${packageName}.${projectName}.backend.events.clusterId>
+		<${packageName}.${projectName}.backend.events.assetName>
+			${projectName}-Backend</${packageName}.${projectName}.backend.events.assetName>
+		<${packageName}.${projectName}.backend.events.assetId>1</${packageName}.${projectName}.backend.events.assetId>
+
+		<${packageName}.${projectName}.backend.http.port>8080</${packageName}.${projectName}.backend.http.port>
+		<${packageName}.${projectName}.backend.dns>${domainName}</${packageName}.${projectName}.backend.dns>
+
+	</properties>
+
+	<dependencies>
+		<dependency>
+			<groupId>${packageName}</groupId>
+			<artifactId>${projectName}-frontend</artifactId>
+		</dependency>
+
+		<!-- Garganttua Events -->
+
+		<dependency>
+			<groupId>com.garganttua</groupId>
+			<artifactId>garganttua-events</artifactId>
+			<version>${com.garganttua.events.version}</version>
+		</dependency>
+
+		<!--APIPENDENCIES-->
+
+		<dependency>
+			<groupId>com.garganttua</groupId>
+			<artifactId>garganttua-api-core</artifactId>
+			<version>${com.garganttua.api.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.garganttua</groupId>
+			<artifactId>garganttua-api-spring-interface-rest</artifactId>
+			<version>${com.garganttua.api.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.garganttua</groupId>
+			<artifactId>garganttua-api-spring-dao-mongo</artifactId>
+			<version>${com.garganttua.api.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.garganttua</groupId>
+			<artifactId>garganttua-api-spring-interface-rest-swagger</artifactId>
+			<version>${com.garganttua.api.version}</version>
+		</dependency>
+
+		<!--API SECURITY DEPENDENCIES-->
+
+		<dependency>
+			<groupId>com.garganttua</groupId>
+			<artifactId>garganttua-api-security-authentication-authorization</artifactId>
+			<version>${com.garganttua.api.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.garganttua</groupId>
+			<artifactId>garganttua-api-security-authentication-login-password</artifactId>
+			<version>${com.garganttua.api.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.garganttua</groupId>
+			<artifactId>garganttua-api-security-authorization-jwt</artifactId>
+			<version>${com.garganttua.api.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.garganttua</groupId>
+			<artifactId>
+				garganttua-api-spring-security-authentication-interface-rest</artifactId>
+			<version>${com.garganttua.api.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.garganttua</groupId>
+			<artifactId>garganttua-api-spring-security-interface-rest</artifactId>
+			<version>${com.garganttua.api.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.garganttua</groupId>
+			<artifactId>
+				garganttua-api-spring-security-authorization-protocol-http-bearer</artifactId>
+			<version>${com.garganttua.api.version}</version>
+		</dependency>
+
+		<!-- Tests-->
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>5.11.4</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>5.14.2</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-junit-jupiter</artifactId>
+			<version>5.14.2</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<version>3.3.1</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>kafka</artifactId>
+			<version>1.19.3</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.18.0</version>
+		</dependency>
+
+		<dependency>
+			<groupId>de.flapdoodle.embed</groupId>
+			<artifactId>de.flapdoodle.embed.mongo.spring3x</artifactId>
+			<version>4.18.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>de.flapdoodle.embed</groupId>
+			<artifactId>de.flapdoodle.embed.mongo</artifactId>
+			<version>4.18.0</version>
+			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
+
+	</dependencies>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<properties>
+				<${packageName}.${projectName}.backend.profiles>dev,embeddedContext</${packageName}.${projectName}.backend.profiles>
+				<${packageName}.${projectName}.backend.events.context.directory>
+					./src/main/resources</${packageName}.${projectName}.backend.events.context.directory>
+				<${packageName}.${projectName}.backend.log.level>INFO</${packageName}.${projectName}.backend.log.level>
+				<${packageName}.${projectName}.backend.database.url>
+					mongodb://backend:backend@localhost:27017/${projectName}</${packageName}.${projectName}.backend.database.url>
+				<${packageName}.${projectName}.backend.kafka.url>
+					localhost:29092&amp;maxPollRecords=1&amp;enableAutoCommit=false&amp;autoOffsetReset=latest&amp;partitionsAutoScalling=true&amp;allowAutoCreateTopics=name</${packageName}.${projectName}.backend.kafka.url>
+				<${packageName}.${projectName}.backend.events.bus.directory>
+					~/data/bus</${packageName}.${projectName}.backend.events.bus.directory>
+			</properties>
+		</profile>
+		<profile>
+			<id>prod</id>
+			<properties>
+				<${packageName}.${projectName}.backend.profiles>prod</${packageName}.${projectName}.backend.profiles>
+				<${packageName}.${projectName}.backend.events.context.directory>./</${packageName}.${projectName}.backend.events.context.directory>
+				<${packageName}.${projectName}.backend.log.level>INFO</${packageName}.${projectName}.backend.log.level>
+				<${packageName}.${projectName}.backend.events.bus.directory>
+					/data/bus</${packageName}.${projectName}.backend.events.bus.directory>
+				<${packageName}.${projectName}.backend.database.url>
+					${DB_URL:mongodb://backend:backend@${projectName}-mongo:27017/garganttua-showcase-site}</${packageName}.${projectName}.backend.database.url>
+				<${packageName}.${projectName}.backend.kafka.url>
+					${projectName}-kafka:29092&amp;maxPollRecords=1&amp;enableAutoCommit=false&amp;autoOffsetReset=latest&amp;partitionsAutoScalling=true&amp;allowAutoCreateTopics=true</${packageName}.${projectName}.backend.kafka.url>
+			</properties>
+		</profile>
+		<profile>
+			<id>jvm</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-maven-plugin</artifactId>
+						<executions>
+							<execution>
+								<goals>
+									<goal>repackage</goal>
+								</goals>
+								<configuration>
+									<mainClass>
+										${packageName}.${projectName}.backend.BackendApplication</mainClass>
+								</configuration>
+							</execution>
+						</executions>
+						<configuration>
+							<includeSystemScope>true</includeSystemScope>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
+	</profiles>
+
+	<build>
+		<resources>
+			<resource>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+			</resource>
+		</resources>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.13.0</version>
+				<configuration>
+					<release>21</release>
+					<target>21</target>
+					<source>21</source>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.1</version>
+			</plugin>
+		</plugins>
+	</build>
+</project>
+

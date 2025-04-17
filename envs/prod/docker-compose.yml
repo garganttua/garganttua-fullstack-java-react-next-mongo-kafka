@@ -1,0 +1,75 @@
+services:
+#  redis:
+#    image: redis:7.4-alpine
+#    ports:
+#      - 6379:6379
+#    environment:
+#      ALLOW_EMPTY_PASSWORD: yes 
+
+  ${projectName}-zookeeper:
+    image: confluentinc/cp-zookeeper:7.4.4
+    environment:
+      ZOOKEEPER_CLIENT_PORT: 2181
+      ZOOKEEPER_TICK_TIME: 2000
+    restart: always
+    networks:
+      - ${projectName}-network
+
+  ${projectName}-site:
+    image: ${projectContainerRepository}:latest
+    depends_on:
+      - ${projectName}-kafka
+      - ${projectName}-mongo
+    volumes:
+      - ${projectName}-bus-data:/data/bus:rw
+    networks:
+      - ${projectName}-network
+    environment:
+      - DB_URL=mongodb://backend:backend@${projectName}-mongo:27017/${projectName}-site
+      - KAFKA_URL=${projectName}-kafka:29092&maxPollRecords=1&enableAutoCommit=false&autoOffsetReset=latest&partitionsAutoScalling=true&allowAutoCreateTopics=true
+    restart: always
+
+  ${projectName}-mongo:
+    image: mongo:latest
+    networks:
+      - ${projectName}-network
+    volumes:
+      - ${projectName}-mongo-data:/data/db
+      - ./${projectName}-mongo.js:/docker-entrypoint-initdb.d/${projectName}-mongo.js
+    restart: always
+
+  ${projectName}-nginx:
+    image: nginx:latest
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - ${projectName}-network
+    volumes:
+      - ./${projectName}-nginx.conf:/etc/nginx/nginx.conf:ro 
+      - ./${projectName}-certs/fullchain.pem:/etc/nginx/certs/fullchain.pem:ro
+      - ./${projectName}-certs/privkey.pem:/etc/nginx/certs/privkey.pem:ro
+    restart: always
+
+  ${projectName}-kafka:
+    image: confluentinc/cp-kafka:7.4.4
+    depends_on:
+      - ${projectName}-zookeeper
+    networks:
+      - ${projectName}-network
+    restart: always
+    environment:
+      KAFKA_BROKER_ID: 1
+      KAFKA_ZOOKEEPER_CONNECT: ${projectName}-zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://${projectName}-kafka:9092,PLAINTEXT_HOST://${projectName}-kafka:29092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
+volumes:
+  ${projectName}-mongo-data:
+  ${projectName}-bus-data:
+
+networks:
+  ${projectName}-network:
+    driver: bridge

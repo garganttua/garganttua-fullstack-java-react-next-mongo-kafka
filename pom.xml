@@ -1,0 +1,117 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>${packageName}</groupId>
+	<artifactId>${projectName}</artifactId>
+	<packaging>pom</packaging>
+	<version>0.0.1</version>
+
+	<repositories>
+		<repository>
+			<id>github garganttua api</id>
+			<name>github garganttua api</name>
+			<url>https://maven.pkg.github.com/garganttua/garganttua-api</url>
+		</repository>
+		<repository>
+			<id>github garganttua events</id>
+			<name>github garganttua events</name>
+			<url>https://maven.pkg.github.com/garganttua/garganttua-events</url>
+		</repository>
+		<repository>
+			<id>github garganttua tooling</id>
+			<name>github garganttua tooling</name>
+			<url>https://maven.pkg.github.com/garganttua/garganttua-tooling</url>
+		</repository>
+	</repositories>
+	
+	<pluginRepositories>
+		<pluginRepository>
+			<id>github garganttua tooling</id>
+			<name>github garganttua tooling</name>
+			<url>https://maven.pkg.github.com/garganttua/garganttua-tooling</url>
+			<layout>default</layout>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</pluginRepository>
+	</pluginRepositories>
+	
+	<distributionManagement>
+		<snapshotRepository>
+			<id>git ${projectName}</id>
+			<name>git ${projectName}</name>
+			<url>${projectRepository}</url>
+		</snapshotRepository>
+		<repository>
+			<id>git ${projectName}</id>
+			<name>git ${projectName}</name>
+			<url>${projectRepository}</url>
+		</repository>
+	</distributionManagement>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<com.garganttua.api.version>2.0.4</com.garganttua.api.version>
+		<com.garganttua.events.version>1.1.2</com.garganttua.events.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.slf4j</groupId>
+				<artifactId>slf4j-simple</artifactId>
+				<version>2.0.13</version>
+			</dependency>
+			<dependency>
+				<groupId>${packageName}</groupId>
+				<artifactId>${projectName}-frontend</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>1.18.30</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>2.0.7</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-simple</artifactId>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.13.0</version>
+				<configuration>
+					<source>18</source>
+					<target>18</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>2.22.1</version>
+			</plugin>
+		</plugins>
+	</build>
+
+	<modules>
+		<module>frontend</module>
+		<module>backend</module>
+	</modules>
+</project>
+

@@ -3,11 +3,11 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>${packageName}</groupId>
-		<artifactId>${projectName}</artifactId>
+		<groupId>com.garganttua</groupId>
+		<artifactId>noghost</artifactId>
 		<version>0.0.1</version>
 	</parent>
-	<artifactId>${projectName}-frontend</artifactId>
+	<artifactId>noghost-frontend</artifactId>
 
 	<dependencies>
 	</dependencies>
@@ -25,7 +25,7 @@
 		<profile>
 			<id>prod</id>
 			<properties>
-				<api.url>https://${domainName}</api.url>
+				<api.url>https://garganttua.com</api.url>
 			</properties>
 		</profile>
 	</profiles>

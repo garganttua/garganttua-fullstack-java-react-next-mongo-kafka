@@ -1,6 +1,6 @@
 {
 	"tenantId": "0",
-	"clusterId": "noghost-backend-cluster",
+	"clusterId": "${projectName}-backend-cluster",
 	"topics": [
 		{
 			"ref": "/events"
@@ -64,7 +64,7 @@
 			"name": "kafka",
 			"type": "kafka",
 			"version": "1.0",
-			"configuration": "url=@com.garganttua.noghost.backend.kafka.url@"
+			"configuration": "url=@${packageName}.${projectName}.backend.kafka.url@"
 		},
 		{
 			"name": "events",

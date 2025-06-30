@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Vérification des arguments
-if [ $# -ne 5 ]; then
+if [ $# -ne 4 ]; then
   echo "Usage: $0 <base_package> <project_name> <project_domain_name> <project_container_repo> <project_repo>"
   echo "Exemple: $0 com.garganttua Showcase-Site ghcr.io/garganttua/showcase-site https://maven.pkg.github.com/garganttua/showcase-site"
   exit 1

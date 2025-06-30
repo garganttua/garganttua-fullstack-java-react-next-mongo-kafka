@@ -2,8 +2,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.garganttua</groupId>
-	<artifactId>noghost</artifactId>
+	<groupId>${packageName}</groupId>
+	<artifactId>${projectName}</artifactId>
 	<packaging>pom</packaging>
 	<version>0.0.1</version>
 
@@ -39,21 +39,21 @@
 	
 	<distributionManagement>
 		<snapshotRepository>
-			<id>git noghost</id>
-			<name>git noghost</name>
-			<url>ghcr.io/garganttua/noghost</url>
+			<id>git ${projectName}</id>
+			<name>git ${projectName}</name>
+			<url>${projectRepository}</url>
 		</snapshotRepository>
 		<repository>
-			<id>git noghost</id>
-			<name>git noghost</name>
-			<url>ghcr.io/garganttua/noghost</url>
+			<id>git ${projectName}</id>
+			<name>git ${projectName}</name>
+			<url>${projectRepository}</url>
 		</repository>
 	</distributionManagement>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<com.garganttua.api.version>2.0.7</com.garganttua.api.version>
-		<com.garganttua.events.version>1.1.3</com.garganttua.events.version>
+		<com.garganttua.api.version>2.0.4</com.garganttua.api.version>
+		<com.garganttua.events.version>1.1.2</com.garganttua.events.version>
 	</properties>
 
 	<dependencyManagement>
@@ -64,8 +64,8 @@
 				<version>2.0.13</version>
 			</dependency>
 			<dependency>
-				<groupId>com.garganttua</groupId>
-				<artifactId>noghost-frontend</artifactId>
+				<groupId>${packageName}</groupId>
+				<artifactId>${projectName}-frontend</artifactId>
 				<version>${project.version}</version>
 			</dependency>
 		</dependencies>
@@ -114,3 +114,4 @@
 		<module>backend</module>
 	</modules>
 </project>
+

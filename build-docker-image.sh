@@ -1,3 +1,3 @@
 #/bin/sh
 
-docker build . --file Dockerfile --tag garganttua-noghost-site:latest
+docker build . --file Dockerfile --tag garganttua-showcase-site:latest

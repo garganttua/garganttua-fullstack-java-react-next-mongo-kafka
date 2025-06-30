@@ -3,34 +3,34 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>com.garganttua</groupId>
-		<artifactId>noghost</artifactId>
+		<groupId>${packageName}</groupId>
+		<artifactId>${projectName}</artifactId>
 		<version>0.0.1</version>
 	</parent>
-	<artifactId>noghost-backend</artifactId>
+	<artifactId>${projectName}-backend</artifactId>
 	<packaging>jar</packaging>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
 		<!-- Backend configuration -->
-		<com.garganttua.noghost.backend.superTenantId>0</com.garganttua.noghost.backend.superTenantId>
-		<com.garganttua.noghost.backend.version>${project.version}</com.garganttua.noghost.backend.version>
+		<${packageName}.${projectName}.backend.superTenantId>0</${packageName}.${projectName}.backend.superTenantId>
+		<${packageName}.${projectName}.backend.version>${project.version}</${packageName}.${projectName}.backend.version>
 
-		<com.garganttua.noghost.backend.events.clusterId>1</com.garganttua.noghost.backend.events.clusterId>
-		<com.garganttua.noghost.backend.events.assetName>
-			noghost-Backend</com.garganttua.noghost.backend.events.assetName>
-		<com.garganttua.noghost.backend.events.assetId>1</com.garganttua.noghost.backend.events.assetId>
+		<${packageName}.${projectName}.backend.events.clusterId>1</${packageName}.${projectName}.backend.events.clusterId>
+		<${packageName}.${projectName}.backend.events.assetName>
+			${projectName}-Backend</${packageName}.${projectName}.backend.events.assetName>
+		<${packageName}.${projectName}.backend.events.assetId>1</${packageName}.${projectName}.backend.events.assetId>
 
-		<com.garganttua.noghost.backend.http.port>8080</com.garganttua.noghost.backend.http.port>
-		<com.garganttua.noghost.backend.dns>garganttua.com</com.garganttua.noghost.backend.dns>
+		<${packageName}.${projectName}.backend.http.port>8080</${packageName}.${projectName}.backend.http.port>
+		<${packageName}.${projectName}.backend.dns>${domainName}</${packageName}.${projectName}.backend.dns>
 
 	</properties>
 
 	<dependencies>
 		<dependency>
-			<groupId>com.garganttua</groupId>
-			<artifactId>noghost-frontend</artifactId>
+			<groupId>${packageName}</groupId>
+			<artifactId>${projectName}-frontend</artifactId>
 		</dependency>
 
 		<!-- Garganttua Events -->
@@ -179,30 +179,30 @@
 				<activeByDefault>true</activeByDefault>
 			</activation>
 			<properties>
-				<com.garganttua.noghost.backend.profiles>dev,embeddedContext</com.garganttua.noghost.backend.profiles>
-				<com.garganttua.noghost.backend.events.context.directory>
-					./src/main/resources</com.garganttua.noghost.backend.events.context.directory>
-				<com.garganttua.noghost.backend.log.level>INFO</com.garganttua.noghost.backend.log.level>
-				<com.garganttua.noghost.backend.database.url>
-					mongodb://backend:backend@localhost:27017/noghost</com.garganttua.noghost.backend.database.url>
-				<com.garganttua.noghost.backend.kafka.url>
-					localhost:29092&amp;maxPollRecords=1&amp;enableAutoCommit=false&amp;autoOffsetReset=latest&amp;partitionsAutoScalling=true&amp;allowAutoCreateTopics=name</com.garganttua.noghost.backend.kafka.url>
-				<com.garganttua.noghost.backend.events.bus.directory>
-					~/data/bus</com.garganttua.noghost.backend.events.bus.directory>
+				<${packageName}.${projectName}.backend.profiles>dev,embeddedContext</${packageName}.${projectName}.backend.profiles>
+				<${packageName}.${projectName}.backend.events.context.directory>
+					./src/main/resources</${packageName}.${projectName}.backend.events.context.directory>
+				<${packageName}.${projectName}.backend.log.level>INFO</${packageName}.${projectName}.backend.log.level>
+				<${packageName}.${projectName}.backend.database.url>
+					mongodb://backend:backend@localhost:27017/${projectName}</${packageName}.${projectName}.backend.database.url>
+				<${packageName}.${projectName}.backend.kafka.url>
+					localhost:29092&amp;maxPollRecords=1&amp;enableAutoCommit=false&amp;autoOffsetReset=latest&amp;partitionsAutoScalling=true&amp;allowAutoCreateTopics=name</${packageName}.${projectName}.backend.kafka.url>
+				<${packageName}.${projectName}.backend.events.bus.directory>
+					~/data/bus</${packageName}.${projectName}.backend.events.bus.directory>
 			</properties>
 		</profile>
 		<profile>
 			<id>prod</id>
 			<properties>
-				<com.garganttua.noghost.backend.profiles>prod</com.garganttua.noghost.backend.profiles>
-				<com.garganttua.noghost.backend.events.context.directory>./</com.garganttua.noghost.backend.events.context.directory>
-				<com.garganttua.noghost.backend.log.level>INFO</com.garganttua.noghost.backend.log.level>
-				<com.garganttua.noghost.backend.events.bus.directory>
-					/data/bus</com.garganttua.noghost.backend.events.bus.directory>
-				<com.garganttua.noghost.backend.database.url>
-					${DB_URL:mongodb://backend:backend@noghost-mongo:27017/garganttua-showcase-site}</com.garganttua.noghost.backend.database.url>
-				<com.garganttua.noghost.backend.kafka.url>
-					noghost-kafka:29092&amp;maxPollRecords=1&amp;enableAutoCommit=false&amp;autoOffsetReset=latest&amp;partitionsAutoScalling=true&amp;allowAutoCreateTopics=true</com.garganttua.noghost.backend.kafka.url>
+				<${packageName}.${projectName}.backend.profiles>prod</${packageName}.${projectName}.backend.profiles>
+				<${packageName}.${projectName}.backend.events.context.directory>./</${packageName}.${projectName}.backend.events.context.directory>
+				<${packageName}.${projectName}.backend.log.level>INFO</${packageName}.${projectName}.backend.log.level>
+				<${packageName}.${projectName}.backend.events.bus.directory>
+					/data/bus</${packageName}.${projectName}.backend.events.bus.directory>
+				<${packageName}.${projectName}.backend.database.url>
+					${DB_URL:mongodb://backend:backend@${projectName}-mongo:27017/garganttua-showcase-site}</${packageName}.${projectName}.backend.database.url>
+				<${packageName}.${projectName}.backend.kafka.url>
+					${projectName}-kafka:29092&amp;maxPollRecords=1&amp;enableAutoCommit=false&amp;autoOffsetReset=latest&amp;partitionsAutoScalling=true&amp;allowAutoCreateTopics=true</${packageName}.${projectName}.backend.kafka.url>
 			</properties>
 		</profile>
 		<profile>
@@ -222,7 +222,7 @@
 								</goals>
 								<configuration>
 									<mainClass>
-										com.garganttua.noghost.backend.BackendApplication</mainClass>
+										${packageName}.${projectName}.backend.BackendApplication</mainClass>
 								</configuration>
 							</execution>
 						</executions>

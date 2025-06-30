@@ -6,7 +6,7 @@ services:
 #    environment:
 #      ALLOW_EMPTY_PASSWORD: yes 
 
-  noghost-zookeeper:
+  ${projectName}-zookeeper:
     image: confluentinc/cp-zookeeper:7.4.4
     environment:
       ZOOKEEPER_CLIENT_PORT: 2181
@@ -14,34 +14,34 @@ services:
     ports:
       - 22181:2181
 
-  noghost-mongo:
+  ${projectName}-mongo:
     image: mongo:latest
     ports:
       - 27017:27017
     networks:
-      - noghost-network
+      - ${projectName}-network
     volumes:
-      - noghost-mongo-data:/data/db
-      - ./noghost-mongo.js:/docker-entrypoint-initdb.d/noghost-mongo.js
+      - ${projectName}-mongo-data:/data/db
+      - ./${projectName}-mongo.js:/docker-entrypoint-initdb.d/${projectName}-mongo.js
     restart: always
 
-  noghost-kafka:
+  ${projectName}-kafka:
     image: confluentinc/cp-kafka:7.4.4
     depends_on:
-      - noghost-zookeeper
+      - ${projectName}-zookeeper
     ports:
       - 29092:29092
     environment:
       KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: noghost-zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://noghost-kafka:9092,PLAINTEXT_HOST://localhost:29092
+      KAFKA_ZOOKEEPER_CONNECT: ${projectName}-zookeeper:2181
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://${projectName}-kafka:9092,PLAINTEXT_HOST://localhost:29092
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
 volumes:
-  noghost-mongo-data:
+  ${projectName}-mongo-data:
 
 networks:
-  noghost-network:
+  ${projectName}-network:
     driver: bridge
